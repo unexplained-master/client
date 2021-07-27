@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export GHOST_CONTENT_API_URL=https://theunexplained.academy
+export GHOST_CONTENT_API_KEY=<content-api-key>
+export GHOST_CONTENT_API_VERSION=v2
+
+docker run -p 3000:3000 -e "GHOST_CONTENT_API_URL=$GHOST_CONTENT_API_URL" -e "GHOST_CONTENT_API_KEY=$GHOST_CONTENT_API_KEY" -e "GHOST_CONTENT_API_VERSION=$GHOST_CONTENT_API_VERSION" tue-front-next

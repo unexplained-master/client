@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#We need to define the environment variables within the pipeline for builds
+export GHOST_CONTENT_API_URL=https://theunexplained.academy
+export GHOST_CONTENT_API_KEY=<content-api-key>
+export GHOST_CONTENT_API_VERSION=v2
+
+
+# We then use them as build args
+docker build --progress plain --build-arg GHOST_CONTENT_API_URL --build-arg GHOST_CONTENT_API_KEY --build-arg GHOST_CONTENT_API_VERSION -t tue-front-next .
