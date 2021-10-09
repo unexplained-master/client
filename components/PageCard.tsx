@@ -9,7 +9,7 @@ interface OwnProps {
 type Props = OwnProps;
 
 const PageCard: FunctionComponent<Props> = ({ page }) => {
-    const href = "/pages/" + page.slug;
+    const href = `/pages/${page.slug}`;
 
   return (<div className="flex flex-col items-start col-span-12 overflow-hidden shadow-sm rounded-sm md:col-span-6 lg:col-span-4">
       <Link href={href}>
