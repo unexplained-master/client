@@ -1,10 +1,33 @@
 import { Nullable, Params } from "@tryghost/content-api";
 import api from "./api";
 
+export const getPastEvents = async () => {
+    return await api.posts
+        .browse({
+            limit: "all",
+            filter: "tags:[events, past]"
+        })
+        .catch(err => {
+            console.error(err);
+        });
+};
+
+export const getUpcomingEvents = async () => {
+    return await api.posts
+        .browse({
+            limit: "all",
+            filter: "tags:[events, upcoming]"
+        })
+        .catch(err => {
+            console.error(err);
+        });
+};
+
 export const getEvents = async () => {
     return await api.posts
         .browse({
-            limit: "all"
+            limit: "all",
+            filter: "tags:[events]"
         })
         .catch(err => {
             console.error(err);
