@@ -5,7 +5,7 @@ interface OwnProps {}
 
 type Props = OwnProps;
 
-const Footer: FunctionComponent<Props> = (props) => {
+const Footer: FunctionComponent<Props> = () => {
 
   return (<footer className="bg-gray-800 pt-10 sm:mt-10 pt-10">
     <div className="max-w-6xl m-auto text-gray-800 flex flex-wrap justify-left">
@@ -14,22 +14,22 @@ const Footer: FunctionComponent<Props> = (props) => {
           For the curious
         </div>
 
-        <Link href="/faq">
+        <Link href="/pages/faq">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           FAQ
         </a>
         </Link>
-        <Link href="/our-mission">
+        <Link href="/pages/our-mission">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Our mission
         </a>
         </Link>
-        <Link href="/code-of-conduct">
+        <Link href="/pages/code-of-conduct">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Code of Conduct
         </a>
         </Link>
-        <Link href="/press-inquiries">
+        <Link href="/pages/press-inquiries">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Press Inquiries
         </a>
@@ -41,17 +41,17 @@ const Footer: FunctionComponent<Props> = (props) => {
           For brands
         </div>
 
-        <Link href="/submit-a-perk">
+        <Link href="/pages/submit-a-perk">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Submit a perk
         </a>
         </Link>
-        <Link href="/submit-an-event">
+        <Link href="/pages/submit-an-event">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Submit an event
         </a>
         </Link>
-        <Link href="/contact-us">
+        <Link href="/pages/contact-us">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Contact us
         </a>
@@ -63,25 +63,25 @@ const Footer: FunctionComponent<Props> = (props) => {
           For members
         </div>
 
-        <Link href="/report-a-creeper">
-          <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
-          Report a Creeper
-        </a>
-        </Link>
-        <Link href="/become-a-nymph">
+        <Link href="/pages/become-a-nymph">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Become a Nymph
         </a>
         </Link>
-        <Link href="/become-a-muse">
+        <Link href="/pages/become-a-muse">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Become a Muse
         </a>
         </Link>
-        <Link href="/contact-reservations">
+        <Link href="/pages/contact-reservations">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           Contact reservations
         </a>
+        </Link>
+        <Link href="/pages/report-a-creeper">
+          <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
+            Report a Creeper
+          </a>
         </Link>
       </div>
 
@@ -90,10 +90,16 @@ const Footer: FunctionComponent<Props> = (props) => {
           For all
         </div>
 
-        <Link href={"/archive"}>
+        <Link href="/posts">
           <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
           The Unexplained Archive
         </a>
+        </Link>
+
+        <Link href="/pages/pics">
+          <a className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700">
+            Pixxxels
+          </a>
         </Link>
       </div>
     </div>
@@ -107,11 +113,6 @@ const Footer: FunctionComponent<Props> = (props) => {
         </div>
 
         <div className="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
-          <Link href={"/"}>
-            <a className="w-6 mx-1">
-            <i className="uil uil-youtube"></i>
-          </a>
-          </Link>
           <Link href={"/"}>
             <a className="w-6 mx-1">
             <i className="uil uil-instagram"></i>

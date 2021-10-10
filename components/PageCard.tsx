@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import Link from "next/link";
 import {PostOrPage} from "@tryghost/content-api";
+import {useEnvironment} from "contexts/EnvironmentContext";
 
 interface OwnProps {
     page: PostOrPage;
@@ -9,12 +10,14 @@ interface OwnProps {
 type Props = OwnProps;
 
 const PageCard: FunctionComponent<Props> = ({ page }) => {
+    const { environment: { GHOST_CONTENT_API_URL } } = useEnvironment();
+
     const href = `/pages/${page.slug}`;
 
   return (<div className="flex flex-col items-start col-span-12 overflow-hidden shadow-sm rounded-sm md:col-span-6 lg:col-span-4">
       <Link href={href}>
           <a className="block transition duration-500 ease-out transform hover:scale-110 w-full">
-              {page.feature_image && <img className="object-cover w-full shadow-sm max-h-56" src={page.feature_image} alt={page.title} />}
+              {page.feature_image && <img className="object-cover w-full shadow-sm max-h-56" src={GHOST_CONTENT_API_URL + page.feature_image} alt={page.title} />}
           </a>
       </Link>
 
@@ -30,8 +33,8 @@ const PageCard: FunctionComponent<Props> = ({ page }) => {
                   </a>
               </Link>
           </h2>
-          <p className="mt-2 text-sm text-gray-500">
-              Check out these inspiring workstations to get ideas on how to level-up your workstation.
+          <p className="mt-2 text-sm text-gray-500" style={{ maxHeight: "250px" }}>
+              { page.excerpt }
           </p>
       </div>
 

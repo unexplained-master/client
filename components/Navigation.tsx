@@ -36,16 +36,8 @@ const Navigation: FunctionComponent<Props> = ({ transparent }) => {
                             <NavigationLink href="/engagement" >
                                 Be Engaged
                             </NavigationLink>
-
                             <NavigationLink href="/testimonies" >
                                 Word of Mouth
-                            </NavigationLink>
-
-                            <NavigationLink href="/pages" >
-                                Pages
-                            </NavigationLink>
-                            <NavigationLink href="/posts" >
-                                Posts
                             </NavigationLink>
                         </div>
                     </div>

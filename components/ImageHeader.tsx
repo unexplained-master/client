@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
+import {Nullable} from "@tryghost/content-api";
 
 interface OwnProps {
-    url: string;
+    url?: Nullable<string | undefined>;
 }
 
 type Props = OwnProps;
