@@ -18,3 +18,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.kg-card {
+  margin: 1rem 0;
+}
