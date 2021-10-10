@@ -27,7 +27,6 @@ interface OwnProps {
 type Props = OwnProps;
 
 const index: FunctionComponent<Props> = ({ pages }) => {
-  
   return (
     <Page>
       <Navigation />

@@ -1,17 +1,12 @@
 import { PostOrPage } from "@tryghost/content-api";
 import React, { FunctionComponent } from 'react';
-import {getPost, getPosts} from "../../lib/posts";
+import {getPost, getPosts} from "lib/posts";
 import Page from "../../components/Page";
 import Navigation from "../../components/Navigation";
 import Container from "../../components/Container";
-import styled from "styled-components";
 import ImageHeader from "../../components/ImageHeader";
-
-const HtmlContainer = styled.div`
-  .kg-card .kg-image-card {
-    
-  }
-`;
+import Article from "components/Article";
+import Footer from "components/Footer";
 
 export const getStaticPaths = async () => {
   const posts = await getPosts();
@@ -24,19 +19,19 @@ export const getStaticPaths = async () => {
   }
 };
 
-export async function getStaticProps({ params: { slug } }: { params: { slug: string }}) {
+export const getStaticProps = async ({ params: { slug } }: { params: { slug: string }}) => {
   const post = await getPost({ slug })
-  
+
   if (!post) {
     return {
       notFound: true,
     }
   }
-  
+
   return {
     props: { ...post }
   }
-}
+};
 
 interface OwnProps {
 }
@@ -50,14 +45,18 @@ const Post: FunctionComponent<Props> = ({ html, feature_image, title }) => {
         <Navigation transparent/>
 
         <ImageHeader url={feature_image!}>
-          <h1 className={"text-4xl font-extrabold leading-10 tracking-tight"}>
+          <h1 className="text-4xl font-extrabold leading-10 tracking-tight">
             { title }
           </h1>
         </ImageHeader>
 
         <Container>
-          {html && <HtmlContainer dangerouslySetInnerHTML={{__html: html}} className="text-white whitespace-pre-wrap"/>}
+            <section className="flex flex-col items-center">
+                {html && <Article html={html}/>}
+            </section>
         </Container>
+
+        <Footer/>
       </Page>
   );
 };

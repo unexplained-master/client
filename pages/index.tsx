@@ -2,15 +2,17 @@ import React, { FunctionComponent } from 'react';
 import Container from "components/Container";
 import Navigation from "components/Navigation";
 import Page from "components/Page";
-import Paragraph from "../components/Paragraph";
 import Footer from "../components/Footer";
 import ImageHeader from "../components/ImageHeader";
-import EventsSection from "../components/EventsSection";
+import EventsList from "components/EventsList";
 import {PostsOrPages} from "@tryghost/content-api";
 import {getEvents} from "../lib/events";
+import TestimoniesList from "components/TestimoniesList";
+import {getTestimonies} from "lib/testimonies";
 
 export async function getStaticProps() {
     const events = await getEvents();
+    const testimonies = await getTestimonies();
 
     if (!events) {
         return {
@@ -19,17 +21,18 @@ export async function getStaticProps() {
     }
 
     return {
-        props: { events }
+        props: { events, testimonies }
     }
 }
 
 interface OwnProps {
     events: PostsOrPages;
+    testimonies: PostsOrPages;
 }
 
 type Props = OwnProps;
 
-const index: FunctionComponent<Props> = ({ events }) => {
+const index: FunctionComponent<Props> = ({ events, testimonies }) => {
   return (
     <Page>
         <Navigation transparent/>
@@ -42,33 +45,43 @@ const index: FunctionComponent<Props> = ({ events }) => {
         </ImageHeader>
 
         <Container>
-            <h2 className="text-4xl font-bold leading-10 tracking-tight text-white">
-                A SOCIAL CLUB FOR THE ADVENTUROUS
-            </h2>
-            <Paragraph>
-                The Unexplained makes your sexual fantasies come true. We are free from judgement and prejudices with a no pressure environment. We are seasoned and experienced organisers whom you can trust and rely on.
-            </Paragraph>
-            <Paragraph>
-                We empower the female by being safe and consensual & respecting boundaries. We facilitate the creation of authentic interactions & unforgettable memories. We create erotic dreamscapes of unbridled desire and unimaginable joy. Our parties, your fantasies, our world, your journey, our alchemy, your destiny.
-            </Paragraph>
-            <Paragraph>
-                <strong>Prepare for a journey of self-discovery</strong>
-            </Paragraph>
-            <Paragraph>
-                <strong>Push back your limits</strong>
-            </Paragraph>
-            <Paragraph>
-                <strong>Your boundaries</strong>
-            </Paragraph>
-            <Paragraph>
-                <strong>Lose control</strong>
-            </Paragraph>
-            <Paragraph>
-                <strong>Let go</strong>
-            </Paragraph>
+            <section className="flex flex-col items-center">
+                <article className="prose text-center">
+                    <h2>
+                        A SOCIAL CLUB FOR THE ADVENTUROUS
+                    </h2>
+                    <p>
+                        The Unexplained makes your sexual fantasies come true. We are free from judgement and prejudices with a no pressure environment. We are seasoned and experienced organisers whom you can trust and rely on.
+                    </p>
+                    <p>
+                        We empower the female by being safe and consensual & respecting boundaries. We facilitate the creation of authentic interactions & unforgettable memories. We create erotic dreamscapes of unbridled desire and unimaginable joy. Our parties, your fantasies, our world, your journey, our alchemy, your destiny.
+                    </p>
+                    <p>
+                        <strong>Prepare for a journey of self-discovery</strong>
+                    </p>
+                    <p>
+                        <strong>Push back your limits</strong>
+                    </p>
+                    <p>
+                        <strong>Your boundaries</strong>
+                    </p>
+                    <p>
+                        <strong>Lose control</strong>
+                    </p>
+                    <p>
+                        <strong>Let go</strong>
+                    </p>
+                </article>
+            </section>
         </Container>
+
         <Container>
-            <EventsSection events={events}/>
+            <section>
+                {events && <EventsList events={events}/>}
+            </section>
+            <section>
+                {testimonies && <TestimoniesList testimonies={testimonies}/>}
+            </section>
         </Container>
         <Footer/>
     </Page>

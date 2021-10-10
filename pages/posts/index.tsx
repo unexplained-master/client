@@ -44,7 +44,7 @@ const index: FunctionComponent<Props> = ({ posts }) => {
       <div className="flex grid h-full grid-cols-12 gap-10 pb-10 mt-8 sm:mt-16 text-white">
         <div className="grid grid-cols-12 col-span-12 gap-7">
           {posts.map(post => (
-              <PostCard page={post} key={post.slug}/>
+              <PostCard post={post} key={post.slug}/>
           ))}
         </div>
       </div>

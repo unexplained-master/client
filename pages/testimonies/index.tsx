@@ -3,12 +3,35 @@ import Navigation from "components/Navigation";
 import Footer from "components/Footer";
 import Page from "components/Page";
 import ImageHeader from "components/ImageHeader";
+import {getPage} from "lib/pages";
+import Container from "components/Container";
+import Article from "components/Article";
+import {PostOrPage, PostsOrPages} from "@tryghost/content-api";
+import TestimoniesList from "components/TestimoniesList";
+import {getTestimonies} from "lib/testimonies";
 
-interface OwnProps {}
+export const getStaticProps = async () => {
+    const page = await getPage({ slug: "word-of-mouth" })
+    const testimonies = await getTestimonies();
 
-type Props = OwnProps;
+    if (!page) {
+        return {
+            notFound: true,
+        }
+    }
 
-const index: FunctionComponent<Props> = ({}) => {
+    return {
+        props: { ...page, testimonies }
+    }
+};
+
+interface OwnProps {
+    testimonies: PostsOrPages;
+}
+
+type Props = OwnProps & PostOrPage;
+
+const index: FunctionComponent<Props> = ({ html, testimonies }) => {
   
   return (
       <Page>
@@ -21,6 +44,17 @@ const index: FunctionComponent<Props> = ({}) => {
               </h1>
           </ImageHeader>
 
+          <Container>
+              <div className="flex flex-col items-center">
+                  {html && <Article html={html}/>}
+              </div>
+          </Container>
+
+          <Container>
+              <section>
+                  {testimonies && <TestimoniesList testimonies={testimonies} title="Testimonies"/>}
+              </section>
+          </Container>
         <Footer/>
       </Page>
   );
